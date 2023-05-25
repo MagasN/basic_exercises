@@ -12,7 +12,13 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+
+names = [student['first_name'] for student in students]
+
+for name in set(names):
+    count_names = names.count(name)
+    print(f"{name}: {count_names}")
+print('\n')
 
 
 # Задание 2
@@ -26,7 +32,23 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+
+def search_popular_name(names_list):
+    names = [student['first_name'] for student in names_list]
+    names_dict = {}
+
+    for name in set(names):
+        names_dict[name] = names.count(name)
+
+    max_repit_name = max(names_dict.values())
+    popular_names = {key: value for key, value in names_dict.items() if value == max_repit_name}
+    return popular_names
+
+max_names = search_popular_name(students)
+
+print('Самое частое имя среди учеников:', end=' ')
+print(*max_names.keys(), sep=(', '))
+print('\n')
 
 
 # Задание 3
@@ -51,8 +73,13 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
 
+for school_class in range(len(school_students)):
+    max_names = search_popular_name(school_students[school_class])
+
+    print(f"Самое частое имя в классе {school_class+1}:", end=' ')
+    print(*max_names.keys(), sep=(', '))
+print('\n')
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -72,8 +99,23 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
 
+def count_students(class_dic, is_male):
+        count_girls = 0
+        count_boys = 0
+        
+        for names_students in class_dic ['students']:
+            name = names_students['first_name']
+            if is_male[name]:
+                count_boys += 1
+            else:
+                count_girls += 1
+        return {'boys':count_boys, 'girls':count_girls}
+
+for class_dic in school:
+    count_student_class = count_students(class_dic, is_male)
+    print(f"Класс {class_dic['class']}: девочки {count_student_class['girls']}, мальчики {count_student_class['boys']}")  
+print('\n')
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -91,5 +133,16 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
+max_count_student = {'boys_class':None, 'boys':0, 'girls_class':None, 'girls':0}
+for class_dic in school:
+    count_stud_class = count_students(class_dic, is_male)
+    if count_stud_class['boys'] > max_count_student['boys']:
+        max_count_student['boys'] = count_stud_class['boys']
+        max_count_student['boys_class'] = class_dic['class']
 
+    if count_stud_class['girls'] > max_count_student['girls']:
+        max_count_student['girls'] = count_stud_class['girls']
+        max_count_student['girls_class'] = class_dic['class']
+
+print("Больше всего мальчиков в классе", max_count_student['boys_class'])
+print("Больше всего девочек в классе", max_count_student['girls_class'])
