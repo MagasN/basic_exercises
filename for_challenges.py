@@ -50,13 +50,11 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
 ]
 
-count_groups = len(groups)
+print(f"Количество групп: {len(groups)}.")
 
-print(f"Количество групп: {count_groups}.")
-
-for number_grup in range(count_groups):
-    count_stud = len(groups[number_grup])
-    print(f"Группа {number_grup+1}: {count_stud} ученика")
+for id_grup, students in enumerate(groups):
+    count_stud = len(students)
+    print(f"Группа {id_grup+1}: {count_stud} ученика")
 print('\n')
 
 # Задание 5
@@ -71,6 +69,6 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
 
-for number_grup in range(len(groups)):
-    print(f"Группа {number_grup+1}:", end=' ')
-    print(*groups[number_grup], sep=', ')
+for id_grup, students in enumerate(groups):
+    print(f"Группа {id_grup+1}:", end=' ')
+    print(*students, sep=', ')

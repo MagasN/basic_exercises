@@ -30,24 +30,12 @@ students = [
     {'first_name': 'Петя'},
     {'first_name': 'Маша'},
     {'first_name': 'Маша'},
-    {'first_name': 'Оля'},
+    {'first_name': 'Петя'},
 ]
 
-def search_popular_name(names_list):
-    names = [student['first_name'] for student in names_list]
-    names_dict = {}
-
-    for name in set(names):
-        names_dict[name] = names.count(name)
-
-    max_repit_name = max(names_dict.values())
-    popular_names = {key: value for key, value in names_dict.items() if value == max_repit_name}
-    return popular_names
-
-max_names = search_popular_name(students)
-
-print('Самое частое имя среди учеников:', end=' ')
-print(*max_names.keys(), sep=(', '))
+students_list = [student['first_name'] for student in students]
+# print(set(students_list))
+print("Самое частое имя среди учеников:", max(set(students_list), key=students_list.count))
 print('\n')
 
 
@@ -73,13 +61,6 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-
-for school_class in range(len(school_students)):
-    max_names = search_popular_name(school_students[school_class])
-
-    print(f"Самое частое имя в классе {school_class+1}:", end=' ')
-    print(*max_names.keys(), sep=(', '))
-print('\n')
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
